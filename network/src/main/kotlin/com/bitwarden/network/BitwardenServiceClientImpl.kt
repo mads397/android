@@ -22,7 +22,7 @@ import com.bitwarden.network.service.ConfigServiceImpl
 import com.bitwarden.network.service.DevicesService
 import com.bitwarden.network.service.DevicesServiceImpl
 import com.bitwarden.network.service.DigitalAssetLinkService
-import com.bitwarden.network.service.DigitalAssetLinkServiceImpl
+import com.bitwarden.network.service.DirectDigitalAssetLinkServiceImpl
 import com.bitwarden.network.service.DownloadService
 import com.bitwarden.network.service.DownloadServiceImpl
 import com.bitwarden.network.service.EventService
@@ -138,11 +138,7 @@ internal class BitwardenServiceClientImpl(
     }
 
     override val digitalAssetLinkService: DigitalAssetLinkService by lazy {
-        DigitalAssetLinkServiceImpl(
-            digitalAssetLinkApi = retrofits
-                .createStaticRetrofit(baseUrl = "https://digitalassetlinks.googleapis.com/")
-                .create(),
-        )
+        DirectDigitalAssetLinkServiceImpl()
     }
 
     override val downloadService: DownloadService by lazy {
